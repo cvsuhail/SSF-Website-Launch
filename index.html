@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SSF Kerala — Official Website Launch</title>
+  <meta name="description" content="Launching the new digital home of SSF Kerala. ഒറ്റയാകരുത് ഒരാശയമാവുക." />
+  <meta property="og:title" content="SSF Kerala — Official Website Launch" />
+  <meta property="og:description" content="Launching the new digital home of SSF Kerala." />
+  <meta property="og:image" content="https://ssfkerala.org/_next/image?url=%2Fimages%2Fhero%2Fflag.webp&w=1536&q=75" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://ssfkerala.org/favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;600;700;900&family=Noto+Sans+Malayalam:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bricolage Grotesque', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-optical-sizing: auto;
+      font-variation-settings: "wdth" 100;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    main {
+      position: relative;
+      display: flex;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      color: #022c22;
+      background: radial-gradient(ellipse at 50% 0%, #FFFBEF 0%, #F4EFE3 55%, #E9E0CB 100%);
+    }
+
+    /* Dot pattern overlay */
+    .dot-pattern {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(circle at 1px 1px, #0F5132 1px, transparent 0);
+      background-size: 26px 26px;
+    }
+
+    /* Green glow top */
+    .glow-top {
+      pointer-events: none;
+      position: absolute;
+      top: -128px;
+      left: 50%;
+      height: 520px;
+      width: 520px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      filter: blur(48px);
+      background: rgba(16, 185, 129, 0.20);
+    }
+
+    /* Gold glow left */
+    .glow-left {
+      pointer-events: none;
+      position: absolute;
+      left: -96px;
+      top: 33%;
+      height: 360px;
+      width: 360px;
+      border-radius: 50%;
+      filter: blur(48px);
+      background: rgba(212, 175, 55, 0.25);
+    }
+
+    /* Content wrapper */
+    .content {
+      position: relative;
+      z-index: 10;
+      margin: 0 auto;
+      display: flex;
+      width: 100%;
+      max-width: 768px;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 12px;
+      height: 100px;
+      width: 100px;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+      outline: none;
+      opacity: 0;
+      transform: translateY(-10px) scale(0.6);
+      animation: fadeInLogo 0.8s ease forwards 0.2s;
+    }
+
+    @media (min-width: 640px) {
+      .logo {
+        height: 120px;
+        width: 120px;
+      }
+    }
+
+    /* Badge */
+    .badge {
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      background: linear-gradient(90deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+      border: 1px solid rgba(176,141,40,0.5);
+      color: #8A6A14;
+      opacity: 0;
+      transform: translateY(-8px);
+      animation: fadeInBadge 0.7s ease forwards 0.5s;
+    }
+
+    .badge-dot {
+      height: 6px;
+      width: 6px;
+      border-radius: 50%;
+      background-color: #B08D28;
+      animation: pulse 2s infinite;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: #022c22;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards 0.7s;
+    }
+
+    h1 span {
+      color: #0F5132;
+    }
+
+    @media (min-width: 640px) {
+      h1 { font-size: 2.25rem; }
+    }
+    @media (min-width: 768px) {
+      h1 { font-size: 3rem; }
+    }
+
+    /* Malayalam tagline */
+    .tagline {
+      margin-top: 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #065f46;
+      font-family: 'Noto Sans Malayalam', sans-serif;
+      opacity: 0;
+      filter: blur(6px);
+      animation: fadeInBlur 0.9s ease forwards 1s;
+    }
+
+    @media (min-width: 640px) {
+      .tagline { font-size: 1.5rem; }
+    }
+
+    /* Launched by section */
+    .launched-by {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 24px 32px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      box-shadow:
+        0 4px 24px -4px rgba(6, 78, 59, 0.12),
+        0 1px 3px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.7s ease forwards 1.2s;
+    }
+
+    .launched-by::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #064E3B, #D4AF37, #064E3B);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .launched-by .label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: #B08D28;
+      background: linear-gradient(90deg, #8A6A14, #D4AF37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .launched-by .name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #064E3B;
+      letter-spacing: -0.01em;
+    }
+
+    @media (min-width: 640px) {
+      .launched-by .name { font-size: 20px; }
+    }
+
+    .launched-by .title {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 500;
+      color: #065f46;
+      opacity: 0.85;
+    }
+
+    @media (min-width: 640px) {
+      .launched-by .title { font-size: 13px; }
+    }
+
+    .launched-by .date {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #fff;
+      background: linear-gradient(135deg, #064E3B, #047857);
+      padding: 4px 14px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 640px) {
+      .launched-by .date { font-size: 12px; }
+    }
+
+    /* CTA section */
+    .cta-section {
+      margin-top: 20px;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: fadeInScale 0.7s ease forwards 1.5s;
+    }
+
+    .cta-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-button {
+      position: relative;
+      overflow: hidden;
+      border-radius: 9999px;
+      padding: 16px 36px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      color: #fff;
+      background: linear-gradient(135deg, #064E3B 0%, #047857 50%, #064E3B 100%);
+      border: 1.5px solid rgba(212, 175, 55, 0.6);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .cta-button {
+        padding: 20px 44px;
+        font-size: 18px;
+      }
+    }
+
+    .cta-button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px -8px rgba(6, 78, 59, 0.5);
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+
+    .cta-button .arrow {
+      display: inline-flex;
+      transition: transform 0.2s ease;
+    }
+
+    .cta-button:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* Shimmer effect */
+    .cta-button .shimmer {
+      position: absolute;
+      top: 0;
+      left: -33%;
+      width: 33%;
+      height: 100%;
+      transform: skewX(12deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    .cta-hint {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(6, 78, 59, 0.5);
+    }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Animations */
+    @keyframes fadeInLogo {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInBadge {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBlur {
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes shimmer {
+      0% { left: -33%; }
+      100% { left: 133%; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <main>
+    <div class="dot-pattern"></div>
+    <div class="glow-top"></div>
+    <div class="glow-left"></div>
+
+    <div class="content">
+      <img
+        src="https://www.ssfkozhikodesouth.in/logo.png"
+        alt="SSF Kerala Logo"
+        class="logo"
+      />
+
+      <!-- <span class="badge">
+        <span class="badge-dot"></span>
+        Official Website Launch
+      </span> -->
+
+      <h1>Website Launching </br><span style="margin-top: 10px;">SSF Kerala</span></h1>
+
+      <!-- <p class="tagline" lang="ml">ഒറ്റയാകരുത് ഒരാശയമാവുക</p> -->
+
+      <div class="launched-by">
+        <p class="label">Launched by</p>
+        <p class="name">Sheik Abubakar Ahmed</p>
+        <p class="title">Grand Mufti of India</p>
+        <p class="date">June 2, 2026</p>
+      </div>
+
+      <div class="cta-section">
+        <div class="cta-wrapper">
+          <a href="https://ssfkerala.org" class="cta-button" id="launch-btn">
+            <span class="shimmer"></span>
+            <span>Launch Website</span>
+            <span class="arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </a>
+          <p class="cta-hint">Tap to launch</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Confetti animation
+    (function() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId = null;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      const colors = ['#0F5132', '#047857', '#10B981', '#D4AF37', '#B08D28', '#F59E0B', '#FBBF24', '#ffffff'];
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * 20,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          vx: (Math.random() - 0.5) * 3,
+          vy: Math.random() * 3 + 2,
+          opacity: 1,
+          decay: Math.random() * 0.005 + 0.002
+        };
+      }
+
+      function launchConfetti() {
+        for (let i = 0; i < 120; i++) {
+          setTimeout(function() {
+            particles.push(createParticle());
+          }, i * 20);
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.04;
+          p.rotation += p.rotationSpeed;
+          p.opacity -= p.decay;
+
+          if (p.opacity <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+
+        if (particles.length > 0) {
+          animationId = requestAnimationFrame(animate);
+        } else {
+          animationId = null;
+        }
+      }
+
+      // Launch confetti on page load after animations settle
+      setTimeout(function() {
+        launchConfetti();
+        animate();
+      }, 1800);
+
+      // Launch confetti on button click, then redirect
+      document.getElementById('launch-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        launchConfetti();
+        if (!animationId) {
+          animate();
+        }
+        setTimeout(function() {
+          window.location.href = 'https://ssfkerala.org';
+        }, 2000);
+      });
+    })();
+  </script>
+</body>
+</html>
